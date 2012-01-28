@@ -94,7 +94,7 @@ namespace boost { namespace process { namespace posix {
 		
         template<class Executor> void  pre_fork_parent(Executor& e) const 
         { 
-            for_each(m_args.begin(), m_args.end(), lazy::pre_fork_parent(e));
+            for_each(m_args.begin(), m_args.end(), lazy::pre_fork_parent<Executor>(e));
         } 
 
 		friend std::ostream& operator<<(std::ostream&, const args&);

@@ -56,16 +56,17 @@ namespace boost { namespace process { namespace windows {
         {
             pre_create(izs);
 
-            switch(CreateProcessW( m_exe.wstring().c_str()
-								 , m_args.ptr()
-								 , m_process_security_attributes_ptr
-								 , m_thread_security_attributes_ptr
-								 , m_inherit_handles
-								 , m_creation_flags
-								 , m_env_vars_ptrs
-								 , m_working_dir.wstring().c_str()
-								 ,&m_startup_info
-								 ,&m_process_info))
+            switch(CreateProcessW
+            ( m_exe.wstring().c_str()
+            , m_args.ptr()
+            , m_process_security_attributes_ptr
+            , m_thread_security_attributes_ptr
+            , m_inherit_handles
+            , m_creation_flags
+            , m_env_vars_ptrs
+            , m_working_dir.wstring().c_str()
+            , &m_startup_info
+            , &m_process_info))
             {
                 default:   post_create(izs); break; 
                 case  0: failed_create(izs); break; 
