@@ -11,7 +11,6 @@
 
 #include <boost/filesystem/path.hpp>
 #include <boost/iostreams/device/file_descriptor.hpp>
-#include <boost/iostreams/filesystem_v3_path_adapter.hpp>
 #include <boost/optional.hpp>
 #include <boost/process/file_descriptor_ray.hpp>
 
@@ -32,7 +31,7 @@ namespace boost { namespace process { namespace windows {
 
         template<class Executor> void pre_create(Executor& e) const
         {
-            m_source = source_type(boost::iostreams::filesystem_v3_path_adapter(m_path));
+            m_source = source_type(m_path);
             
             e.set_std_in((*m_source).handle());
         }
@@ -52,7 +51,7 @@ namespace boost { namespace process { namespace windows {
 
         template<class Executor> void pre_create(Executor& e) const
         {
-            m_sink = sink_type(boost::iostreams::filesystem_v3_path_adapter(m_path));
+            m_sink = sink_type(m_path);
 
             e.set_std_out((*m_sink).handle());
         }
@@ -72,7 +71,7 @@ namespace boost { namespace process { namespace windows {
 
         template<class Executor> void pre_create(Executor& e) const
         {
-            m_sink = sink_type(boost::iostreams::filesystem_v3_path_adapter(m_path));
+            m_sink = sink_type(m_path);
 
             e.set_std_err((*m_sink).handle());
         }
