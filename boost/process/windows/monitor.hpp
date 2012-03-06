@@ -52,11 +52,6 @@ namespace boost { namespace process { namespace windows {
             {
                 if (!TerminateProcess(m_child.handle(), EXIT_FAILURE))
                 {
-                    CloseHandle(m_child.handle());
-                    throw boost::system::system_error(boost::system::error_code(::GetLastError(), boost::system::system_category()));
-                }
-                if (!CloseHandle(m_child.handle()))
-                {
                     throw boost::system::system_error(boost::system::error_code(::GetLastError(), boost::system::system_category()));
                 }
             }

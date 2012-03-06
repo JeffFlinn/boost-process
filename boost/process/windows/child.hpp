@@ -28,7 +28,7 @@ namespace boost { namespace process { namespace windows {
              DuplicateHandle(GetCurrentProcess(), c.handle(), GetCurrentProcess(), &m_h, DWORD(0), false, DUPLICATE_SAME_ACCESS);
          }
         
-        ~child() { CloseHandle(m_h); }
+        ~child() { if(INVALID_HANDLE_VALUE != m_h) CloseHandle(m_h); }
         
         bool operator==(const child& rhs) const { return m_h == rhs.m_h; }
         bool operator!=(const child& rhs) const { return m_h != rhs.m_h; }
@@ -36,6 +36,8 @@ namespace boost { namespace process { namespace windows {
         operator safe_bool() const { return ((*this) != child())? &safe_bool_impl::true_value : 0; }
 
         HANDLE handle() const { return m_h; }
+
+        void close() { CloseHandle(m_h); m_h = INVALID_HANDLE_VALUE; }
 
         HANDLE m_h;
     };
