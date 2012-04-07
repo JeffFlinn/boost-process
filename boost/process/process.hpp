@@ -16,6 +16,6 @@
 #include <boost/process/make_child.hpp>
 #include <boost/process/monitor.hpp>
 
-#include <boost/process/initializer/initializers.hpp>
+#include <boost/process/initializers/initializers.hpp>
 
 #endif // BOOST_PROCESS_HPP

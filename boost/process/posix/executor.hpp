@@ -16,6 +16,7 @@
 #include <boost/process/posix/child.hpp>
 #include <boost/process/posix/initializers/initializer.hpp>
 
+#include <csignal>
 #include <set>
 #include <vector>
 
